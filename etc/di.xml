@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+<!--    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">-->
+<!--        <arguments>-->
+<!--            <argument name="collections" xsi:type="array">-->
+<!--                <item name="alvor_shop_shop_listing_data_source" xsi:type="string">Alvor\Shop\Model\ResourceModel\Shop\Collection</item>-->
+<!--            </argument>-->
+<!--        </arguments>-->
+<!--    </type>-->
+
+
+    <preference for="Alvor\Shop\Api\Data\ShopInterface" type="Alvor\Shop\Model\Data\Shop"/>
+    <preference for="Alvor\Shop\Api\ShopRepositoryInterface" type="Alvor\Shop\Model\ShopRepository"/>
+    <preference for="Alvor\Shop\Api\Data\ShopSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+
+
+    <virtualType name="ShopGridCollection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">shop</argument>
+            <argument name="resourceModel" xsi:type="string">Alvor\Shop\Model\ResourceModel\Shop</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="alvor_shop_shop_listing_data_source" xsi:type="string">ShopGridCollection</item>
+            </argument>
+        </arguments>
+    </type>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--    <virtualType name="OggettoCustomerConfirmationLogger" type="\Monolog\Logger">-->
+<!--        <arguments>-->
+<!--            <argument name="name" xsi:type="string">oggetto_customer_confirmation_logger</argument>-->
+<!--            <argument name="handlers"  xsi:type="array">-->
+<!--                <item name="file" xsi:type="object">Oggetto\CustomerConfirmation\Logger\FileLogger</item>-->
+<!--            </argument>-->
+<!--            <argument name="processors"  xsi:type="array">-->
+<!--                <item name="process_id" xsi:type="object">Monolog\Processor\ProcessIdProcessor</item>-->
+<!--            </argument>-->
+<!--        </arguments>-->
+<!--    </virtualType>-->
+
+<!--    <virtualType name="OggettoCustomerConfirmationSms" type="Oggetto\CustomerConfirmation\Model\CustomerConfirmation">-->
+<!--        <arguments>-->
+<!--            <argument name="eventManager" xsi:type="object">Magento\Framework\Event\ManagerInterface</argument>-->
+<!--            <argument name="customerManager" xsi:type="object">Oggetto\CustomerConfirmation\Model\CustomerManager</argument>-->
+<!--            <argument name="logger" xsi:type="object">OggettoCustomerConfirmationLogger</argument>-->
+<!--            <argument name="responseFactory" xsi:type="object">Oggetto\CustomerConfirmation\Model\ResponseFactory</argument>-->
+<!--            <argument name="confirmationRepository" xsi:type="object">-->
+<!--                Oggetto\CustomerConfirmation\Model\ShopRepository-->
+<!--            </argument>-->
+<!--            <argument name="typeManager" xsi:type="object">Oggetto\CustomerConfirmation\Model\Confirmation\Type\Sms</argument>-->
+<!--            <argument name="timeOutConfirmation" xsi:type="object">Oggetto\CustomerConfirmation\Model\TimeoutProcessor</argument>-->
+<!--            <argument name="type" xsi:type="string">sms</argument>-->
+<!--            <argument name="validators" xsi:type="array">-->
+<!--                <item name="alreade_has_confirmed_number" xsi:type="object">\Oggetto\CustomerConfirmation\Model\Confirmation\Validation\AlreadyHasSameConfirmedNumber</item>-->
+<!--            </argument>-->
+<!--        </arguments>-->
+<!--    </virtualType>-->
+
+<!--    <virtualType name="OggettoCustomerConfirmationEmail" type="Oggetto\CustomerConfirmation\Model\CustomerConfirmation">-->
+<!--        <arguments>-->
+<!--            <argument name="eventManager" xsi:type="object">Magento\Framework\Event\ManagerInterface</argument>-->
+<!--            <argument name="customerManager" xsi:type="object">Oggetto\CustomerConfirmation\Model\CustomerManager</argument>-->
+<!--            <argument name="logger" xsi:type="object">OggettoCustomerConfirmationLogger</argument>-->
+<!--            <argument name="responseFactory" xsi:type="object">Oggetto\CustomerConfirmation\Model\ResponseFactory</argument>-->
+<!--            <argument name="confirmationRepository" xsi:type="object">-->
+<!--                Oggetto\CustomerConfirmation\Model\ShopRepository-->
+<!--            </argument>-->
+<!--            <argument name="typeManager" xsi:type="object">Oggetto\CustomerConfirmation\Model\Confirmation\Type\Email</argument>-->
+<!--            <argument name="timeOutConfirmation" xsi:type="object">Oggetto\CustomerConfirmation\Model\TimeoutProcessor</argument>-->
+<!--            <argument name="type" xsi:type="string">email</argument>-->
+<!--        </arguments>-->
+<!--    </virtualType>-->
+
+<!--    <virtualType name="OggettoCustomerConfirmationConfigSms" type="Oggetto\CustomerConfirmation\Helper\Config">-->
+<!--        <arguments>-->
+<!--            <argument name="type" xsi:type="string">sms</argument>-->
+<!--            <argument name="context" xsi:type="object">Magento\Framework\App\Helper\Context</argument>-->
+<!--        </arguments>-->
+<!--    </virtualType>-->
+
+<!--    <virtualType name="OggettoCustomerConfirmationConfigEmail" type="Oggetto\CustomerConfirmation\Helper\Config">-->
+<!--        <arguments>-->
+<!--            <argument name="type" xsi:type="string">email</argument>-->
+<!--            <argument name="context" xsi:type="object">Magento\Framework\App\Helper\Context</argument>-->
+<!--        </arguments>-->
+<!--    </virtualType>-->
+
+<!--    <type name="Oggetto\CustomerConfirmation\Model\Confirmation\Type\Email">-->
+<!--        <arguments>-->
+<!--            <argument name="config" xsi:type="object">OggettoCustomerConfirmationConfigEmail</argument>-->
+<!--        </arguments>-->
+<!--    </type>-->
+
+<!--    <type name="Oggetto\CustomerConfirmation\Model\Confirmation\Type\Sms">-->
+<!--        <arguments>-->
+<!--            <argument name="config" xsi:type="object">OggettoCustomerConfirmationConfigSms</argument>-->
+<!--        </arguments>-->
+<!--    </type>-->
+
+<!--    <type name="Oggetto\CustomerConfirmation\Model\WebApiProcessor">-->
+<!--        <arguments>-->
+<!--            <argument name="logger" xsi:type="object">OggettoCustomerConfirmationLogger</argument>-->
+<!--            <argument name="customerConfirmationPool" xsi:type="array">-->
+<!--                <item name="sms" xsi:type="object">OggettoCustomerConfirmationSms</item>-->
+<!--                <item name="email" xsi:type="object">OggettoCustomerConfirmationEmail</item>-->
+<!--            </argument>-->
+<!--        </arguments>-->
+<!--    </type>-->
+
+<!--    <type name="Oggetto\CustomerConfirmation\Model\Confirmation\Type\AbstractTypeManager">-->
+<!--        <arguments>-->
+<!--            <argument name="config" xsi:type="object">Oggetto\CustomerConfirmation\Helper\NullConfig</argument>-->
+<!--        </arguments>-->
+<!--    </type>-->
+<!--    <type name="\Oggetto\CustomerConfirmation\Model\CustomerManager">-->
+<!--        <arguments>-->
+<!--            <argument name="typeToAttribute" xsi:type="array">-->
+<!--                <item name="sms" xsi:type="string">is_phone_confirmed</item>-->
+<!--                <item name="email" xsi:type="string">is_email_confirmed</item>-->
+<!--            </argument>-->
+<!--        </arguments>-->
+<!--    </type>-->
+</config>

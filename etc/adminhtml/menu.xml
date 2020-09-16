@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Alvor_Shop::alvor" title="Alvor" module="Alvor_Shop" sortOrder="10" resource="Alvor_Shop::shop"/>
+        <add id="Alvor_Shop::shop" title="Manage Shops" module="Alvor_Shop" sortOrder="10" action="shop/shop" resource="Alvor_Shop::shop" parent="Alvor_Shop::alvor"/>
+    </menu>
+</config>
